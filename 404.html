@@ -1,0 +1,115 @@
+<!doctype html>
+<html ng-app="Application_TimeOut">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Tshwane Safety Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="../assets/css/material-dashboard.css" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../assets/css/reports/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../assets/css/reports/dc.min.css">
+    <link rel="stylesheet" href="../assets/css/reports/leaflet.css">
+    <link rel="stylesheet" href="../assets/css/reports/app.css">
+
+
+</head>
+
+<body >
+
+
+    <base href='/'>
+    <my-app>
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+    </my-app>
+
+ <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+
+
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCUENRI7Fj17ZAMV3mlOwJeNh2fy8EPsXg"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+
+
+
+<!-- <script type="text/javascript">
+if (location.href.indexOf('reload')==-1)
+{
+   location.href=location.href+'?reload';
+}
+</script> -->
+
+ <script>
+
+    // var siteurl = siteurl1; this code is for auto loggout.
+    var app = angular.module('Application_TimeOut', []);
+    app.run(function($rootScope, $timeout, $document) {
+    console.log('starting run');
+
+        // Timeout timer value
+        var TimeOutTimerValue = 840000;
+
+        // Start a timeout
+        var TimeOut_Thread = $timeout(function(){ LogoutByTimer() } , TimeOutTimerValue);
+        var bodyElement = angular.element($document);
+
+        angular.forEach(['keydown', 'keyup', 'click', 'mousemove', 'DOMMouseScroll', 'mousewheel', 'mousedown', 'touchstart', 'touchmove', 'scroll', 'focus'],
+        function(EventName) {
+             bodyElement.bind(EventName, function (e) { TimeOut_Resetter(e) });
+        });
+
+        function LogoutByTimer(){
+            // console.log('Logout');
+
+            /// redirect to another page
+
+            var siteurl = window.location.origin;
+            window.location.href = siteurl+'/pages/login';
+        }
+
+        function TimeOut_Resetter(e){
+            console.log(' ' + e);
+
+            /// Stop the pending timeout
+            $timeout.cancel(TimeOut_Thread);
+
+            /// Reset the timeout
+            TimeOut_Thread = $timeout(function(){ LogoutByTimer() } , TimeOutTimerValue);
+        }
+
+    })
+
+</script>
+        <script src="../assets/js/reports/moment.js"></script>
+        <script src="../assets/js/reports/bootstrap.min.js"></script>
+        <script src="../assets/js/reports/bootstrap-datetimepicker.min.js"></script>
+        <script src="../assets/js/reports/underscore-min.js"></script>
+        <script src="../assets/js/reports/crossfilter.js"></script>
+        <script src="../assets/js/reports/d3.min.js"></script>
+        <script src="../assets/js/reports/dc.js"></script>
+        <script src="../assets/js/reports/heatmap.js"></script>
+        <script src="../assets/js/reports/legend.js"></script>
+        <script src="../assets/js/reports/queue.js"></script>
+        <script src="../assets/js/reports/leaflet.js"></script>
+        <script src="../assets/js/reports/leaflet-heat.js"></script>
+        <script src="../assets/js/reports/leaflet-image.js"></script>
+        <script src="../assets/js/reports/app.js"></script>
+
+</html>

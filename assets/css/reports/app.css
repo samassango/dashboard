@@ -1,0 +1,28 @@
+#number-records-nd {
+    font-size: 55px;
+}
+
+#number-incidents-loc {
+    font-size: 55px;
+}
+
+.dc-chart g.row text {
+    fill: black;
+
+}
+
+.dc-chart g.pie text {
+    fill: black;
+
+}
+
+#heatmap-chart {
+    /*margin-left: 90px;*/
+}
+
+g.box-group text {
+    margin-right: -50px;
+}
+
+#channel-pie-chart svg { width: 762px; }
+#heatmap svg { width: 1450px; height: 450px;}
